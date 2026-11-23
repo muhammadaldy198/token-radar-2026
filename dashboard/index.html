@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar — pre-token protocols ranked by expected value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <h1>Token Radar</h1>
+    <p id="subtitle">Pre-token protocols, ranked by the expected value of a token that does not exist yet.</p>
+  </div>
+  <nav class="tabs" aria-label="Views">
+    <a href="#board" id="tab-board" class="tab">Board</a>
+    <a href="#method" id="tab-method" class="tab">Method &amp; evidence</a>
+    <a href="#live" id="tab-live" class="tab">Live tokens</a>
+  </nav>
+</header>
+<main>
+  <section id="kpi" class="kpis" aria-label="Model summary"></section>
+  <section id="strip" class="strip" aria-label="Integrity strip"></section>
+  <section id="ledger" class="ledger" aria-label="Universe ledger"></section>
+  <section id="view-board">
+    <div class="card">
+      <div class="tablebar">
+        <h2>Ranked board <span class="hint" id="rowcount"></span></h2>
+        <div class="controls">
+          <input id="q" type="search" placeholder="Search name, slug or category" aria-label="Search the board">
+          <select id="verdict" aria-label="Filter by verdict">
+            <option value="">All verdicts</option><option value="FARM">FARM only</option><option value="THIN">THIN only</option><option value="SKIP">SKIP only</option>
+          </select>
+          <select id="kind" aria-label="Filter by category"><option value="">All categories</option></select>
+          <button id="csv" type="button">Copy CSV</button>
+        </div>
+      </div>
+      <div class="tblwrap"><table id="boardtbl">
+        <thead><tr>
+          <th data-k="rank">Rank</th><th data-k="name">Protocol</th><th data-k="category">Category</th>
+          <th data-k="tvl_usd">TVL</th><th data-k="implied_value_usd">Exp. value</th>
+          <th data-k="fitted_mcap_usd">Fitted cap</th><th data-k="odds_ever" title="Fitted probability the protocol ever records a token (cross-sectional)">Odds ever</th>
+          <th data-k="odds_12m" title="Forward hazard: the chance it tokens in the next 12 months, given it has not yet">Odds 12m (hazard)</th><th data-k="own_token_share">Share</th>
+          <th data-k="net_per_hour_usd">Net / h</th><th data-k="verdict">Verdict</th>
+        </tr></thead>
+        <tbody id="tbody"></tbody>
+        <tfoot id="tfoot"></tfoot>
+      </table></div>
+      <p class="cap">Click a row for the full-page detail view: every number with its arithmetic. Ranks carry a bootstrap range (P10–P90 over 200 refits, value-fit only: odds and share held fixed); the range shows in the detail view. Verdict is the minimum-capital lens: FARM breaks even at a ≤ $100K deposit, THIN at ≤ $500K, SKIP above that or never.</p>
+    </div>
+    <div class="card">
+      <h2>Value model: fitted market cap vs TVL <span class="hint" id="scatter-cap"></span></h2>
+      <div id="scatter"></div>
+      <p class="cap" id="scatter-note"></p>
+    </div>
+  </section>
+  <section id="view-detail" hidden></section>
+  <section id="view-method" hidden></section>
+  <section id="view-live" hidden></section>
+</main>
+<footer>
+  <p>Model radar-2: Huber log-log value fit on <span id="fn-comps"></span> comparables, logistic odds on <span id="fn-peers"></span> peers, conformal intervals, 9 self-tests. Snapshot <span id="fn-asof"></span> · <span id="fn-source"></span>. No protocol name is special-cased; every number recomputes from the snapshot.</p>
+</footer>
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
