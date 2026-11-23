@@ -1,0 +1,76 @@
+/* Token Radar dashboard: light theme, one page, no network. */
+:root{
+  --bg:#f6f8fa; --card:#fff; --ink:#1f2328; --mut:#656d76; --line:#d8dee4;
+  --blue:#0969da; --green:#1a7f37; --amber:#9a6700; --red:#cf222e; --soft:#ddf4ff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+h1{font-size:26px;margin:0}
+h2{font-size:16px;margin:0 0 8px}
+h3{font-size:14px;margin:18px 0 6px}
+a{color:var(--blue)}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;max-width:1024px;margin:0 auto;padding:18px 16px 8px}
+.top p{margin:4px 0 0;color:var(--mut)}
+.tabs{display:flex;gap:6px;flex:none}
+.tab{padding:7px 12px;border:1px solid var(--line);border-bottom:none;border-radius:8px 8px 0 0;background:#eef1f4;color:var(--ink);text-decoration:none;font-weight:600}
+.tab.on{background:var(--card);color:var(--blue)}
+main{max-width:1024px;margin:0 auto;padding:0 16px 24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0}
+.hint{color:var(--mut);font-weight:400;font-size:13px}
+.cap{color:var(--mut);font-size:12.5px;margin:8px 0 0}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.kpi .k{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em}
+.kpi .v{font-size:22px;font-weight:700;margin-top:2px}
+.kpi .s{font-size:12px;color:var(--mut)}
+.strip{background:#dafbe1;border:1px solid #aceebb;border-radius:10px;padding:10px 14px;margin:12px 0}
+.strip.bad{background:#ffebe9;border-color:#ff8182}
+.strip h2{font-size:13px;text-transform:uppercase;letter-spacing:.04em;margin:0 0 6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid #aceebb;background:#fff;border-radius:20px;padding:3px 10px;font-size:12.5px;cursor:pointer}
+.chip.fail{border-color:#ff8182;background:#fff}
+.chip b{color:var(--green)}
+.chip.fail b{color:var(--red)}
+.stripdetail{font-size:12.5px;color:var(--mut);margin:6px 0 0;min-height:16px}
+.ledger{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:13px;margin:12px 0}
+.ledger b{font-size:15px}
+.ledger .bar{display:flex;height:10px;border-radius:5px;overflow:hidden;margin:8px 0 4px}
+.ledger .bar i{display:block}
+.tablebar{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.controls{display:flex;gap:6px;flex-wrap:wrap}
+.controls input,.controls select,.controls button{font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:#fff}
+.controls button{cursor:pointer;font-weight:600}
+.tblwrap{overflow:auto;max-height:560px;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+th,td{padding:5px 6px;text-align:left;border-bottom:1px solid #eef1f4;white-space:nowrap}
+/* Board headers may wrap: "Odds 12m (hazard)" unwrapped forces the 11-column table 26px past
+   the 1024px viewport and clips the break-even line in the Verdict column. */
+#boardtbl th{white-space:normal}
+th{position:sticky;top:0;background:#f6f8fa;cursor:pointer;z-index:1}
+th.sorted{color:var(--blue)}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:var(--soft)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+tfoot td{font-weight:700;background:#f6f8fa;border-top:2px solid var(--line)}
+.tag{display:inline-block;padding:1px 8px;border-radius:10px;font-size:12px;font-weight:700}
+.tag.FARM{background:#dafbe1;color:var(--green)}
+.tag.THIN{background:#fff8c5;color:var(--amber)}
+.tag.SKIP{background:#ffebe9;color:var(--red)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.kv{width:100%;font-size:13px}
+.kv td{white-space:normal}
+.kv td:first-child{color:var(--mut);width:44%}
+.arith{background:#f6f8fa;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:13px}
+.arith b{font-variant-numeric:tabular-nums}
+.steps{margin:0;padding-left:20px;font-size:13px}
+.steps li{margin:6px 0}
+.sandbox label{display:block;font-size:12.5px;color:var(--mut);margin:8px 0 2px}
+.sandbox input{width:110px;font:inherit;padding:5px 7px;border:1px solid var(--line);border-radius:6px}
+.sandbox .out{font-size:13px;margin-top:10px}
+.pill{display:inline-block;background:var(--soft);border-radius:6px;padding:1px 7px;font-size:12px}
+.warn{background:#fff8c5;border:1px solid #d4a72c;border-radius:8px;padding:10px 12px;font-size:13px;margin:12px 0}
+svg text{font:11px -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;fill:var(--mut)}
+svg .axis{stroke:#d8dee4;stroke-width:1}
+footer{max-width:1024px;margin:0 auto;padding:0 16px 24px;color:var(--mut);font-size:12.5px}
+@media (max-width:700px){.kpis{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}.top{flex-direction:column;align-items:flex-start}}
